@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -87,7 +88,7 @@ fun HomeScreen(){
             Divider(color = Color.Black, thickness = 1.dp)
 
             val opciones = listOf(
-                "Historia de la Filosofía" to R.drawable.historia_filosofia,
+                "Historia de la Filosofía" to R.drawable.lineatiempo,
                 "Ejercicios" to R.drawable.ejercicios,
                 "Filósofos/as" to R.drawable.nietzsche_famosos,
                 "Glosario Filosófico" to R.drawable.glosario
@@ -102,15 +103,14 @@ fun HomeScreen(){
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(opciones.size) { index ->
-                    val (titulo, imagen) = opciones[index]
+                items(opciones) { (titulo, imagen) ->
                     Box(
                         modifier = Modifier
                             .aspectRatio(1f)
                             .clip(RoundedCornerShape(16.dp))
                             .background(Color(0xFFF7F7F7))
                             .border(1.dp, Color.Black, RoundedCornerShape(16.dp))
-                            .clickable { /* Aquí va la navegación */ },
+                            .clickable {  },
                         contentAlignment = Alignment.Center
                     ) {
                         Column(
@@ -118,7 +118,6 @@ fun HomeScreen(){
                             verticalArrangement = Arrangement.Center,
                             modifier = Modifier.padding(12.dp)
                         ) {
-                            // Imagen circular de cada cuadro
                             Image(
                                 painter = painterResource(id = imagen),
                                 contentDescription = titulo,
@@ -126,7 +125,6 @@ fun HomeScreen(){
                                     .size(90.dp)
                             )
                             Spacer(Modifier.height(10.dp))
-                            // Texto debajo
                             Text(
                                 text = titulo,
                                 textAlign = TextAlign.Center,
