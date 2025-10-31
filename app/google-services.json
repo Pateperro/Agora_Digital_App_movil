@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "556964414149",
+    "project_id": "agora-digital-36e05",
+    "storage_bucket": "agora-digital-36e05.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556964414149:android:3435fbc0463f836039a6ac",
+        "android_client_info": {
+          "package_name": "com.vargasnunezcabrera.agora_digital_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556964414149-jde8js7p422bjot7ljjidc854rkbe7qn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vargasnunezcabrera.agora_digital_app",
+            "certificate_hash": "e0dcb3095a43e27dddb85afc552feb8c35c72c83"
+          }
+        },
+        {
+          "client_id": "556964414149-mn4ju4hnd5891ta017h8s9ifskvufkqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm9bUs-CWs4U835lmx3XHtSTCZx_wVMAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556964414149-mn4ju4hnd5891ta017h8s9ifskvufkqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
