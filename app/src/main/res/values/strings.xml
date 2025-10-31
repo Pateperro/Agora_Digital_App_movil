@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Agora_Digital_App</string>
+    <string name="default_web_client_id">556964414149-jde8js7p422bjot7ljjidc854rkbe7qn.apps.googleusercontent.com</string>
+
 </resources>
