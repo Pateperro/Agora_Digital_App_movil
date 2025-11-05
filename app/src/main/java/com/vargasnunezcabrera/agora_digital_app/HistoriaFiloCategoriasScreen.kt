@@ -30,10 +30,8 @@ data class EpocaFilosofica(
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true,
-    showSystemUi = true)
 @Composable
-fun HistoriaFilosofiaScreen() {
+fun HistoriaFilosofiaScreen(onClickEpocaFilosofica:(String) -> Unit = {}) {
     val listaEpocas = listOf(
         EpocaFilosofica("Filosofía Antigua", "Conjunto de pensamientos que surgieron en Grecia y Roma.", R.drawable.historia_filosofia),
         EpocaFilosofica("Filosofía Medieval", "Basada en la fe y la razón durante la Edad Media.", R.drawable.filosofia_medieval),
@@ -82,7 +80,7 @@ fun HistoriaFilosofiaScreen() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 items(listaEpocas) { epoca ->
-                    EpocaCard(epoca)
+                    EpocaCard(epoca, onClickEpocaFilosofica)
                 }
             }
         }
@@ -90,14 +88,17 @@ fun HistoriaFilosofiaScreen() {
 }
 
 @Composable
-fun EpocaCard(epoca: EpocaFilosofica) {
+fun EpocaCard(
+    epoca: EpocaFilosofica,
+    onClickEpocaFilosofica: (String) -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
             .background(Color(0xFFF7F7F7))
             .border(1.dp, Color.Black, RoundedCornerShape(12.dp))
-            .clickable { /* Aquí podrías navegar a detalle */ }
+            .clickable { onClickEpocaFilosofica(epoca.titulo) }
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Image(
