@@ -6,9 +6,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import com.vargasnunezcabrera.agora_digital_app.ui.theme.Agora_Digital_AppTheme
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import java.net.URLDecoder
 
 
 @Composable
@@ -53,23 +56,31 @@ fun NavigationApp(){
         composable("home") {
             HomeScreen(onClickLogout = {
                 myNavController.navigate("login") {
-                    popUpTo(0)
+                    popUpTo(0) { inclusive = true }
                 }
-            })
+            },
+                onClickHistoria = {
+                    myNavController.navigate("historia")
+                }
+            )
         }
 
         composable("historia") {
             HistoriaFilosofiaScreen(
-                onClickEpocaFilosofica = { nombreEpoca ->
-                    myNavController.navigate("epocaFilosofica/$nombreEpoca")
+                onClickEpocaFilosofica = { epocaId ->
+                    val encodedEpoca = URLEncoder.encode(epocaId, StandardCharsets.UTF_8.toString())
+                    myNavController.navigate("epocaFilosofica/$encodedEpoca")
             })
         }
 
-        composable("epocaFilosofia/{nombreEpoca}",
-            arguments = listOf(navArgument("nombreEpoca") {type = NavType.StringType })
+        composable(
+            "epocaFilosofica/{epocaId}",
+            arguments = listOf(navArgument("epocaId") {type = NavType.StringType })
         ) { backStackEntry ->
-            val  nombreEpoca = backStackEntry.arguments?.getString("nombreEpoca") ?: ""
-            EpocaFilosoficaScreen(nombreEpoca){
+            val encodedNombre = backStackEntry.arguments?.getString("epocaId") ?: ""
+            val epocaId = URLDecoder.decode(encodedNombre, StandardCharsets.UTF_8.toString())
+
+            EpocaFilosoficaScreen(epocaId){
                 myNavController.popBackStack()
             }
         }

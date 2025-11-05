@@ -49,13 +49,14 @@ import androidx.compose.ui.unit.sp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 
-@Preview (
-    showBackground = true
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onClickLogout :()->Unit = {}){
+fun HomeScreen(
+    onClickLogout :()->Unit = {},
+    onClickHistoria: () -> Unit = {}
+
+){
     val auth = Firebase.auth
     val user = auth.currentUser
 
@@ -117,7 +118,11 @@ fun HomeScreen(onClickLogout :()->Unit = {}){
                             .clip(RoundedCornerShape(16.dp))
                             .background(Color(0xFFF7F7F7))
                             .border(1.dp, Color.Black, RoundedCornerShape(16.dp))
-                            .clickable {  },
+                            .clickable {
+                                if (titulo == "Historia de la Filosofía") {
+                                    onClickHistoria()
+                                }
+                            },
                         contentAlignment = Alignment.Center
                     ) {
                         Column(

@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 
 data class EpocaFilosofica(
+    val id: String,
     val titulo: String,
     val descripcion: String,
     val imagen: Int
@@ -33,11 +34,11 @@ data class EpocaFilosofica(
 @Composable
 fun HistoriaFilosofiaScreen(onClickEpocaFilosofica:(String) -> Unit = {}) {
     val listaEpocas = listOf(
-        EpocaFilosofica("Filosofía Antigua", "Conjunto de pensamientos que surgieron en Grecia y Roma.", R.drawable.historia_filosofia),
-        EpocaFilosofica("Filosofía Medieval", "Basada en la fe y la razón durante la Edad Media.", R.drawable.filosofia_medieval),
-        EpocaFilosofica("Filosofía Moderna", "Surge en el Renacimiento con el pensamiento racionalista.", R.drawable.filosofiamoderna),
-        EpocaFilosofica("Siglo XIX", "Caracterizada por corrientes como el idealismo y positivismo.", R.drawable.sigloxix),
-        EpocaFilosofica("Filosofía Contemporánea", "Diversidad de corrientes del siglo XX en adelante.", R.drawable.filosofiacontemporanea)
+        EpocaFilosofica("an","Filosofía Antigua", "Conjunto de pensamientos que surgieron en Grecia y Roma.", R.drawable.filosofia_medieval),
+        EpocaFilosofica("me","Filosofía Medieval", "Basada en la fe y la razón durante la Edad Media.", R.drawable.filosofia_medieval),
+        EpocaFilosofica("mo","Filosofía Moderna", "Surge en el Renacimiento con el pensamiento racionalista.", R.drawable.filosofiamoderna),
+        EpocaFilosofica("si","Siglo XIX", "Caracterizada por corrientes como el idealismo y positivismo.", R.drawable.sigloxix),
+        EpocaFilosofica("co","Filosofía Contemporánea", "Diversidad de corrientes del siglo XX en adelante.", R.drawable.filosofiacontemporanea)
     )
 
     Scaffold(
@@ -98,7 +99,7 @@ fun EpocaCard(
             .clip(RoundedCornerShape(12.dp))
             .background(Color(0xFFF7F7F7))
             .border(1.dp, Color.Black, RoundedCornerShape(12.dp))
-            .clickable { onClickEpocaFilosofica(epoca.titulo) }
+            .clickable { onClickEpocaFilosofica(epoca.id) }
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Image(

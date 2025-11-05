@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.sp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EpocaFilosoficaScreen(nombreEpoca: String, onBack: () -> Unit) {
-    val epoca = EpocasRepository.getEpocaByNombre(nombreEpoca)
+    val epoca = EpocasRepository.getEpocaById(nombreEpoca)
 
     if (epoca == null) {
         Text("No se encontró la época seleccionada")
