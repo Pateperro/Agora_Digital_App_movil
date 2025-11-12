@@ -8,16 +8,21 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -48,7 +53,17 @@ fun EpocaFilosoficaScreen(nombreEpoca: String, onBack: () -> Unit) {
     val epoca = EpocasRepository.getEpocaById(nombreEpoca)
 
     if (epoca == null) {
-        Text("No se encontró la época seleccionada")
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Card(modifier = Modifier.padding(start = 10.dp, end = 10.dp)) {
+                Text("No se encontró la época seleccionada")
+            }
+        }
+
         return
     }
 
@@ -103,8 +118,8 @@ fun EpocaFilosoficaScreen(nombreEpoca: String, onBack: () -> Unit) {
                     .padding(horizontal = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                epoca.eventos.forEach { evento ->
-                    EventoTimelineCard(evento)
+                epoca.eventos.forEachIndexed { index, evento ->
+                    TimelineNode(evento, isLast = index == epoca.eventos.size - 1)
                 }
             }
         }
@@ -112,49 +127,78 @@ fun EpocaFilosoficaScreen(nombreEpoca: String, onBack: () -> Unit) {
 }
 
 @Composable
-fun EventoTimelineCard(evento: EventoHistorico) {
+fun TimelineNode(evento: EventoHistorico, isLast: Boolean) {
     var expanded by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .background(Color(0xFFF7F7F7))
-            .border(1.dp, Color.Black, RoundedCornerShape(12.dp))
-            .clickable { expanded = !expanded }
-            .animateContentSize()
-            .padding(12.dp)
+            .padding(vertical = 8.dp)
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                text = evento.fecha,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF333333)
-            )
-
-            Image(
-                painter = painterResource(id = evento.imagen),
-                contentDescription = evento.titulo,
+        // 🔹 Línea vertical completa (de fondo)
+        if (!isLast) {
+            Box(
                 modifier = Modifier
-                    .height(if (expanded) 200.dp else 120.dp)
-                    .fillMaxWidth()
-                    .padding(top = 8.dp),
-                contentScale = ContentScale.Crop
-            )
-
-            Text(
-                text = evento.titulo,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(top = 8.dp)
-            )
-
-            Text(
-                text = if (expanded) evento.descripcionDetallada else evento.descripcionCorta,
-                fontSize = 14.sp,
-                color = Color.DarkGray,
-                modifier = Modifier.padding(top = 4.dp)
+                    .width(3.dp)
+                    .fillMaxHeight()
+                    .padding(start = 28.dp) // alineación con el nodo
+                    .background(Color.Gray)
+                    .align(Alignment.CenterStart)
             )
         }
+
+        // 🔹 Tarjeta (con espacio a la izquierda para el nodo)
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 60.dp) // espacio donde va el nodo
+                .clip(RoundedCornerShape(12.dp))
+                .background(Color(0xFFF7F7F7))
+                .border(1.dp, Color.Black, RoundedCornerShape(12.dp))
+                .clickable { expanded = !expanded }
+                .animateContentSize()
+                .padding(12.dp)
+        ) {
+            Column {
+                Text(
+                    text = evento.fecha,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF333333)
+                )
+
+                Image(
+                    painter = painterResource(id = evento.imagen),
+                    contentDescription = evento.titulo,
+                    modifier = Modifier
+                        .height(if (expanded) 200.dp else 120.dp)
+                        .fillMaxWidth()
+                        .padding(top = 8.dp),
+                    contentScale = ContentScale.Crop
+                )
+
+                Text(
+                    text = evento.titulo,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+
+                Text(
+                    text = if (expanded) evento.descripcionDetallada else evento.descripcionCorta,
+                    fontSize = 14.sp,
+                    color = Color.DarkGray,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
+        }
+
+        // 🔹 Nodo centrado verticalmente (a la izquierda de la tarjeta)
+        Box(
+            modifier = Modifier
+                .size(28.dp)
+                .background(Color(0xFF000000), shape = RoundedCornerShape(14.dp))
+                .align(Alignment.CenterStart)
+                .padding(start = 16.dp)
+        )
     }
 }

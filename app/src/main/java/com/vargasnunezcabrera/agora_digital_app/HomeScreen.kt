@@ -54,7 +54,10 @@ import com.google.firebase.auth.auth
 @Composable
 fun HomeScreen(
     onClickLogout :()->Unit = {},
-    onClickHistoria: () -> Unit = {}
+    onClickHistoria: () -> Unit = {},
+    onClickFilosofos: () -> Unit = {},
+    onClickEstudios: () -> Unit = {},
+    onClickGlosario: () -> Unit = {},
 
 ){
     val auth = Firebase.auth
@@ -119,8 +122,9 @@ fun HomeScreen(
                             .background(Color(0xFFF7F7F7))
                             .border(1.dp, Color.Black, RoundedCornerShape(16.dp))
                             .clickable {
-                                if (titulo == "Historia de la Filosofía") {
-                                    onClickHistoria()
+                                when(titulo) {
+                                    "Historia de la Filosofía" -> onClickHistoria()
+                                        "Filosofos/as" -> onClickFilosofos
                                 }
                             },
                         contentAlignment = Alignment.Center

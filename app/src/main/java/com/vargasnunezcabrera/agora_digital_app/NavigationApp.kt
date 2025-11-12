@@ -12,6 +12,7 @@ import com.vargasnunezcabrera.agora_digital_app.ui.theme.Agora_Digital_AppTheme
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import java.net.URLDecoder
+import androidx.compose.foundation.lazy.items
 
 
 @Composable
@@ -61,6 +62,9 @@ fun NavigationApp(){
             },
                 onClickHistoria = {
                     myNavController.navigate("historia")
+                },
+                onClickFilosofos = {
+                    myNavController.navigate("filosofosList")
                 }
             )
         }
@@ -85,7 +89,31 @@ fun NavigationApp(){
             }
         }
 
+        composable("filosofo") {
+            FilosofoListScreen(
+                listaFilosofos = com.vargasnunezcabrera.agora_digital_app.FilosofoData.listaFilosofos,
+                onClickFilosofo = { filosofo ->
+                myNavController.navigate("filosofo/${filosofo.id}")
+            })
+        }
+
+        composable(
+            "filosofo/{filosofoId}",
+            arguments = listOf(navArgument("filosofoId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getInt("filosofoId") ?: 0
+
+            // Buscamos el filósofo por ID
+            val filosofo = com.vargasnunezcabrera.agora_digital_app.FilosofoData.listaFilosofos.first { it.id == id }
+
+            FilosofosDetalleScreen(filosofo = filosofo) {
+                myNavController.popBackStack()
+            }
+        }
+
+
+
+
+        }
+
     }
-
-
-}
