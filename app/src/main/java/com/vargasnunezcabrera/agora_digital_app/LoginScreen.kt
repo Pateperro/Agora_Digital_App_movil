@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
@@ -44,7 +45,7 @@ fun LoginScreen(
     val activity = LocalView.current.context as Activity
     val googleSignInClient = getGoogleSignInClient(activity)
 
-    var inputName by remember { mutableStateOf("") }
+    var inputEmail by remember { mutableStateOf("") }
     var inputPassword by remember { mutableStateOf("") }
     var loginError by remember { mutableStateOf("") }
     var usuarioError by remember { mutableStateOf("") }
@@ -110,10 +111,10 @@ fun LoginScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     OutlinedTextField(
-                        value = inputName,
-                        onValueChange = { inputName = it },
+                        value = inputEmail,
+                        onValueChange = { inputEmail = it },
                         label = { Text("Usuario") },
-                        leadingIcon = { Icon(imageVector = Icons.Default.Person, contentDescription = null) },
+                        leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = null) },
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedContainerColor = Color.White,
                             unfocusedContainerColor = Color.White,
@@ -191,14 +192,14 @@ fun LoginScreen(
 
                     Button(
                         onClick = {
-                            val isValidEmail = validateEmail(inputName).first
+                            val isValidEmail = validateEmail(inputEmail).first
                             val isValidPassword = validatePassword(inputPassword).first
 
-                            usuarioError = validateEmail(inputName).second
+                            usuarioError = validateEmail(inputEmail).second
                             passwordError = validatePassword(inputPassword).second
 
                             if (isValidEmail && isValidPassword) {
-                                auth.signInWithEmailAndPassword(inputName, inputPassword)
+                                auth.signInWithEmailAndPassword(inputEmail, inputPassword)
                                     .addOnCompleteListener(activity) { task ->
                                         if (task.isSuccessful) {
                                             onSuccessfulLogin()

@@ -61,9 +61,16 @@ fun NavigationApp(){
             },
                 onClickHistoria = {
                     myNavController.navigate("historia")
+                },
+                        onClickGlosario = {
+                    myNavController.navigate(("glosario"))
+
                 }
             )
+
+
         }
+
 
         composable("historia") {
             HistoriaFilosofiaScreen(
@@ -84,8 +91,13 @@ fun NavigationApp(){
                 myNavController.popBackStack()
             }
         }
+        composable("glosario") {
+            GlosarioScreen()
+        }
+
 
     }
+
 
 
 }
