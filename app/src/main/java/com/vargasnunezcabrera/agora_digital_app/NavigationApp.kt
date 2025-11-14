@@ -87,7 +87,7 @@ fun NavigationApp() {
             }
         }
 
-        // ✅ Pantalla de lista de filósofos
+        //  Pantalla de lista de filósofos
         composable("filosofosList") {
             FilosofoListScreen(
                 listaFilosofos = FilosofoData.listaFilosofos,
@@ -97,9 +97,9 @@ fun NavigationApp() {
             )
         }
 
-        // ✅ Pantalla de detalle de un filósofo
+        //  Pantalla de detalle de un filósofo
         composable(
-            "filosofoDetalle/{filosofoId}", // 👈 el nombre ahora coincide
+            "filosofoDetalle/{filosofoId}",
             arguments = listOf(navArgument("filosofoId") { type = NavType.IntType })
         ) { backStackEntry ->
             val id = backStackEntry.arguments?.getInt("filosofoId") ?: 0

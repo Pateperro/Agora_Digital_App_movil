@@ -124,7 +124,7 @@ fun HomeScreen(
                             .clickable {
                                 when(titulo) {
                                     "Historia de la Filosofía" -> onClickHistoria()
-                                        "Filosofos/as" -> onClickFilosofos
+                                    "Filósofos/as" -> onClickFilosofos()
                                 }
                             },
                         contentAlignment = Alignment.Center
