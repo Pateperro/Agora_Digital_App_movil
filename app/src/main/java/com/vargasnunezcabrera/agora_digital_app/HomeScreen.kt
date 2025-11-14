@@ -117,8 +117,10 @@ fun HomeScreen(
                                     "Historia de la Filosofía" -> onClickHistoria()
                                     "Filósofos/as" -> onClickFilosofos()
                                     "Mis Estudios" -> onClickEstudios()
+                                    "Glosario Filosófico" -> onClickGlosario()
                                 }
-                            },
+                            }
+                        ,
                         contentAlignment = Alignment.Center
                     ) {
                         Column(

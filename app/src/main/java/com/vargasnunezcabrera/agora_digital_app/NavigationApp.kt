@@ -69,10 +69,16 @@ fun NavigationApp() {
                     filosofo?.let {
                         myNavController.navigate("misEstudios/${it.id}")
                     }
+                },
+                onClickGlosario = {
+                    myNavController.navigate(("glosario"))
                 }
 
             )
+
+
         }
+
 
         composable("historia") {
             HistoriaFilosofiaScreen(
@@ -94,6 +100,10 @@ fun NavigationApp() {
                 myNavController.popBackStack()
             }
         }
+        composable("glosario") {
+            GlosarioScreen(  onClickBack = { myNavController.popBackStack() })
+        }
+
 
         //  Pantalla de lista de filósofos
         composable("filosofosList") {

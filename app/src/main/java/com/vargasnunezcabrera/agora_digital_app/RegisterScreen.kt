@@ -129,7 +129,7 @@ fun RegisterScreen(onClickBack :()->Unit = {}, onSuccessfulRegister :()->Unit = 
 
                 OutlinedTextField( value = inputName ,
                     onValueChange = { inputName = it },
-                    label = { Text("Usuario") },
+                    label = { Text("Nombre") },
 
                     leadingIcon = { Icon( imageVector = Icons.Default.Person,
                         contentDescription = "User Icon" ) },
