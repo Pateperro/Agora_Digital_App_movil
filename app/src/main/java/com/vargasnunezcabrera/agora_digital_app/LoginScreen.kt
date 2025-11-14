@@ -113,7 +113,7 @@ fun LoginScreen(
                     OutlinedTextField(
                         value = inputEmail,
                         onValueChange = { inputEmail = it },
-                        label = { Text("Usuario") },
+                        label = { Text("Email") },
                         leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = null) },
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedContainerColor = Color.White,
@@ -183,9 +183,7 @@ fun LoginScreen(
                         )
                     }
 
-                    TextButton(onClick = { /* TODO recuperar contraseña */ }) {
-                        Text("¿Olvidó la contraseña?", color = Color.White)
-                    }
+
 
                     Spacer(modifier = Modifier.height(24.dp))
 

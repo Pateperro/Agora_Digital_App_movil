@@ -19,10 +19,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GlosarioScreen() {
+fun GlosarioScreen(
+    onClickBack: () -> Unit = {}   // ← para navegación
+) {
     val alphabet = ('A'..'Z').toList()
     var selectedLetter by remember { mutableStateOf<Char?>(null) }
 
@@ -62,7 +66,7 @@ fun GlosarioScreen() {
         "Teleología: Explicación de los fenómenos por sus fines.",
         "Trascendencia: Lo que va más allá de la experiencia o del mundo físico.",
         "Virtud: Disposición a obrar bien (Aristóteles).",
-        "Voluntad de poder: Concepto central de Nietzsche sobre la fuerza vital que impulsa al ser humano."
+        "Voluntad de poder: Concepto central de Nietzsche."
     )
 
     val filteredGlossary = selectedLetter?.let { letter ->
@@ -72,11 +76,20 @@ fun GlosarioScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {
+                title = {},
+                navigationIcon = {
+                    IconButton(onClick = onClickBack) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Volver"
+                        )
+                    }
+                },
+                actions = {
                     Image(
                         painter = painterResource(R.drawable.agorasinfondo),
                         contentDescription = "Agora Digital",
-                        modifier = Modifier.size(100.dp)
+                        modifier = Modifier.size(90.dp)
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -108,7 +121,7 @@ fun GlosarioScreen() {
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 Text(
-                    text = "Aquí encontrarás conceptos claves sobre el mundo de la filosofía que te ayudarán a orientarte en tus estudios",
+                    text = "Aquí encontrarás conceptos claves sobre el mundo de la filosofía.",
                     fontSize = 16.sp,
                     color = Color(0xFF555555)
                 )
@@ -116,7 +129,7 @@ fun GlosarioScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-
+            // Alfabeto
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -147,7 +160,7 @@ fun GlosarioScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-
+            // Lista glosario
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -160,7 +173,7 @@ fun GlosarioScreen() {
                         colors = CardDefaults.cardColors(
                             containerColor = Color.White
                         ),
-                        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp),
+                        elevation = CardDefaults.elevatedCardElevation(4.dp),
                         shape = RoundedCornerShape(12.dp)
                     ) {
                         Text(
@@ -176,8 +189,4 @@ fun GlosarioScreen() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GlosarioScreenPreview() {
-    GlosarioScreen()
-}
+

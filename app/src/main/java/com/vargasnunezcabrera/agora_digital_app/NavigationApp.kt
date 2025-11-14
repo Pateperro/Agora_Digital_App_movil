@@ -92,7 +92,7 @@ fun NavigationApp(){
             }
         }
         composable("glosario") {
-            GlosarioScreen()
+            GlosarioScreen(  onClickBack = { myNavController.popBackStack() })
         }
 
 
