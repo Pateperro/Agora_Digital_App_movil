@@ -27,11 +27,42 @@ fun GlosarioScreen() {
     var selectedLetter by remember { mutableStateOf<Char?>(null) }
 
     val glossary = listOf(
-        "Amor: sentimiento profundo de afecto.",
-        "Bienestar: estado de satisfacción y equilibrio.",
-        "Conocimiento: conjunto de información y entendimiento.",
-        "Duda: incertidumbre ante un concepto o situación.",
-        "Ética: estudio de la moral y la conducta correcta."
+        "A priori: Conocimiento independiente de la experiencia.",
+        "A posteriori: Conocimiento basado en la experiencia.",
+        "Alienación: Sentimiento de separación del propio ser o del mundo.",
+        "Arquetipo: Modelo universal o primigenio",
+        "Bien supremo: Fin último y máximo bienestar que busca el ser humano.",
+        "Categorías: Conceptos fundamentales para estructurar la realidad.",
+        "Cosmovisión: Manera general de interpretar el mundo.",
+        "Contrato social: Acuerdo teórico que fundamenta la vida en sociedad.",
+        "Deontología: Ética basada en el deber.",
+        "Determinismo: Doctrina que sostiene que todo efecto tiene una causa necesaria.",
+        "Dualismo: División entre cuerpo-mente o entre dos sustancias.",
+        "Epistemología: Rama que estudia el conocimiento.",
+        "Esencia: Aquello que define lo que algo es.",
+        "Escepticismo: Postura que duda de la posibilidad de conocer la verdad.",
+        "Finalismo: Doctrina que explica los fenómenos por sus fines.",
+        "Forma: En Aristóteles, aquello que da estructura a la materia.",
+        "Hedonismo: Doctrina que identifica el bien con el placer.",
+        "Humanismo: Corriente que pone al ser humano en el centro.",
+        "Idea: En Platón, realidad perfecta e inmutable.",
+        "Imperativo categórico: Principio moral universal de Kant.",
+        "Inmanentismo: Postura que rechaza lo trascendente.",
+        "Metafísica: Estudio del ser, la realidad y sus principios.",
+        "Moral: Conjunto de normas que guían el comportamiento.",
+        "Ontología: Rama que estudia el ser.",
+        "Objeto: Aquello que es conocido por un sujeto.",
+        "Pragmatismo: Corriente que evalúa la verdad por su utilidad práctica.",
+        "Paradigma: Modelo conceptual dominante.",
+        "Racionalismo: Doctrina que da primacía a la razón.",
+        "Realismo: Postura que afirma la existencia de una realidad independiente de la mente.",
+        "Ser: Concepto central que se refiere a la existencia.",
+        "Sofisma: Argumento falso que parece verdadero.",
+        "Sujeto: Ser que conoce, piensa o percibe.",
+        "Teleología: Explicación de los fenómenos por sus fines.",
+        "Trascendencia: Lo que va más allá de la experiencia o del mundo físico.",
+        "Virtud: Disposición a obrar bien (Aristóteles).",
+        "Voluntad de poder: Concepto central de Nietzsche sobre la fuerza vital que impulsa al ser humano."
     )
 
     val filteredGlossary = selectedLetter?.let { letter ->
@@ -61,7 +92,7 @@ fun GlosarioScreen() {
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
-            // Fondo del título
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -85,7 +116,7 @@ fun GlosarioScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Barra del alfabeto
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -116,7 +147,7 @@ fun GlosarioScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Lista de conceptos
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
