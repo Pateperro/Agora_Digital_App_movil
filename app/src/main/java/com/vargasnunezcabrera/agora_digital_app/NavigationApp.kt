@@ -42,7 +42,6 @@ fun NavigationApp() {
 
         composable("register") {
             RegisterScreen(
-                onClickBack = { myNavController.popBackStack() },
                 onSuccessfulRegister = {
                     myNavController.navigate("home") {
                         popUpTo(0)
@@ -53,11 +52,6 @@ fun NavigationApp() {
 
         composable("home") {
             HomeScreen(
-                onClickLogout = {
-                    myNavController.navigate("login") {
-                        popUpTo(0) { inclusive = true }
-                    }
-                },
                 onClickHistoria = {
                     myNavController.navigate("historia")
                 },
@@ -72,6 +66,11 @@ fun NavigationApp() {
                 },
                 onClickGlosario = {
                     myNavController.navigate(("glosario"))
+                },
+
+                onClickProfile = {
+                    myNavController.navigate(("perfil"))
+
                 }
 
             )
@@ -105,7 +104,7 @@ fun NavigationApp() {
         }
 
 
-        //  Pantalla de lista de filósofos
+
         composable("filosofosList") {
             FilosofoListScreen(
                 listaFilosofos = FilosofoData.listaFilosofos,
@@ -144,6 +143,16 @@ fun NavigationApp() {
                     myNavController.navigate("filosofoDetalle/${f.id}")
                 }
             )
+        }
+
+        composable("perfil"){
+            ProfileScreen(onClickBack = { myNavController.popBackStack()},
+                onClickEstudios = { myNavController.navigate("misEstudios") },
+                onClickLogout = {
+                    myNavController.navigate("login") {
+                        popUpTo("profile") { inclusive = true }
+                    }
+                })
         }
 
     }

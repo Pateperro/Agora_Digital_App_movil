@@ -25,7 +25,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GlosarioScreen(
-    onClickBack: () -> Unit = {}   // ← para navegación
+    onClickBack: () -> Unit = {}
 ) {
     val alphabet = ('A'..'Z').toList()
     var selectedLetter by remember { mutableStateOf<Char?>(null) }
@@ -76,24 +76,14 @@ fun GlosarioScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {},
-                navigationIcon = {
-                    IconButton(onClick = onClickBack) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Volver"
-                        )
-                    }
-                },
-                actions = {
+                title = {
                     Image(
-                        painter = painterResource(R.drawable.agorasinfondo),
-                        contentDescription = "Agora Digital",
-                        modifier = Modifier.size(90.dp)
+                        painter = painterResource(id = R.drawable.agorasinfondo),
+                        contentDescription = "Logo de la App",
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF232121)
+                    containerColor = Color(0xFF3D3D3D)
                 )
             )
         },

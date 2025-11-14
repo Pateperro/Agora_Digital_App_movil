@@ -137,11 +137,6 @@ fun LoginScreen(
                         )
                     )
 
-                    Spacer(modifier = Modifier.height(1.dp))
-
-                    TextButton(onClick = onClickRegister) {
-                        Text("¿No tienes una cuenta? Regístrate", color = Color.White)
-                    }
 
                     Spacer(modifier = Modifier.height(16.dp))
 
@@ -181,6 +176,12 @@ fun LoginScreen(
                                 .fillMaxWidth()
                                 .padding(bottom = 8.dp)
                         )
+                    }
+
+                    Spacer(modifier = Modifier.height(1.dp))
+
+                    TextButton(onClick = onClickRegister) {
+                        Text("¿No tienes una cuenta? Regístrate", color = Color.White)
                     }
 
 

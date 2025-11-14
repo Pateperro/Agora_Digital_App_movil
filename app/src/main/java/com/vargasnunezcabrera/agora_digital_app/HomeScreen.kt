@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,37 +36,80 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 
-
+@Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    onClickLogout: () -> Unit = {},
     onClickHistoria: () -> Unit = {},
     onClickFilosofos: () -> Unit = {},
     onClickEstudios: () -> Unit = {},
-    onClickGlosario: () -> Unit = {}
+    onClickGlosario: () -> Unit = {},
+    onClickProfile: () -> Unit = {}
 
-    ){
+){
     val auth = Firebase.auth
     val user = auth.currentUser
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Image(
-                    painter = painterResource(id = R.drawable.agorasinfondo),
-                    contentDescription = "Logo de la App",
-                ) },
+                title = {
+                    Image(
+                        painter = painterResource(id = R.drawable.agorasinfondo),
+                        contentDescription = "Logo de la App",
+                        modifier = Modifier.size(120.dp)
+                    )
+                },
+                actions = {
+
+                    val auth = Firebase.auth
+                    val user = auth.currentUser
+
+
+                    val userName = user?.displayName ?: "Usuario"
+
+                    Box(
+                        modifier = Modifier
+                            .padding(end = 16.dp)
+                            .clip(RoundedCornerShape(50))
+                            .background(Color(0xFFE6E6E6))
+                            .padding(horizontal = 12.dp, vertical = 6.dp)
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = userName,
+                                fontSize = 14.sp,
+                                color = Color.Black,
+                                modifier = Modifier.padding(end = 8.dp)
+                            )
+
+                            Image(
+                                painter = painterResource(id = R.drawable.catinsock),
+                                contentDescription = "Foto de perfil",
+                                modifier = Modifier
+                                    .size(28.dp)
+                                    .clip(RoundedCornerShape(50))
+                                    .clickable { onClickProfile() }
+                            )
+                        }
+                    }
+                },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(0xFF3D3D3D)
                 )
             )
+
         }
+
+
     ) { paddingValues ->
         Column (
             modifier = Modifier
@@ -77,7 +121,7 @@ fun HomeScreen(
         ){
             Spacer(Modifier.height(16.dp))
 
-                HorizontalDivider(thickness = 2.dp, color = Color.Black)
+            HorizontalDivider(thickness = 2.dp, color = Color.Black)
             Text(
                 text = "En la Ágora Digital encontrarás la historia de la filosofía, biografía de los filósofos más importantes, ejercicios y más.",
                 modifier = Modifier
@@ -146,17 +190,7 @@ fun HomeScreen(
                     }
                 }
             }
-            Button(
-                onClick = {
-                    auth.signOut()
-                    onClickLogout()
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFFF9900)
-                )
-            ) {
-                Text("Cerrar Sesión")
-            }
+
 
         }
     }
