@@ -12,6 +12,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import java.net.URLDecoder
 
+
 @Composable
 fun NavigationApp() {
     val myNavController = rememberNavController()
@@ -61,8 +62,15 @@ fun NavigationApp() {
                     myNavController.navigate("historia")
                 },
                 onClickFilosofos = {
-                    myNavController.navigate("filosofosList") // ✅ aquí corregido
+                    myNavController.navigate("filosofosList")
+                },
+                onClickEstudios = {
+                    val filosofo = FilosofoData.listaFilosofos.firstOrNull()
+                    filosofo?.let {
+                        myNavController.navigate("misEstudios/${it.id}")
+                    }
                 }
+
             )
         }
 
@@ -110,5 +118,23 @@ fun NavigationApp() {
                 myNavController.popBackStack()
             }
         }
+
+        composable(
+            "misEstudios/{filosofoId}",
+            arguments = listOf(navArgument("filosofoId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getInt("filosofoId") ?: 0
+
+            val filosofo = FilosofoData.listaFilosofos.first { it.id == id }
+
+            MisEstudios (
+                filosofo = filosofo,
+                ejercicios = EjerciciosData.listaEjercicios,
+                onClickFilosofo = { f ->
+                    myNavController.navigate("filosofoDetalle/${f.id}")
+                }
+            )
+        }
+
     }
 }

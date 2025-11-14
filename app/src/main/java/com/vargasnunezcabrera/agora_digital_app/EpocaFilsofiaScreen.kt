@@ -111,7 +111,7 @@ fun EpocaFilosoficaScreen(nombreEpoca: String, onBack: () -> Unit) {
                 modifier = Modifier.padding(16.dp)
             )
 
-            // 👉 Línea de tiempo vertical
+            // Línea de tiempo vertical
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -135,7 +135,6 @@ fun TimelineNode(evento: EventoHistorico, isLast: Boolean) {
             .fillMaxWidth()
             .padding(vertical = 8.dp)
     ) {
-        // 🔹 Línea vertical completa (de fondo)
         if (!isLast) {
             Box(
                 modifier = Modifier
@@ -147,7 +146,7 @@ fun TimelineNode(evento: EventoHistorico, isLast: Boolean) {
             )
         }
 
-        // 🔹 Tarjeta (con espacio a la izquierda para el nodo)
+        //  Tarjeta (con espacio a la izquierda para el nodo)
         Box(
             modifier = Modifier
                 .fillMaxWidth()

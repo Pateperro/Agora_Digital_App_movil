@@ -34,7 +34,7 @@ data class EpocaFilosofica(
 @Composable
 fun HistoriaFilosofiaScreen(onClickEpocaFilosofica:(String) -> Unit = {}) {
     val listaEpocas = listOf(
-        EpocaFilosofica("an","Filosofía Antigua", "Conjunto de pensamientos que surgieron en Grecia y Roma.", R.drawable.filosofia_medieval),
+        EpocaFilosofica("an","Filosofía Antigua", "Conjunto de pensamientos que surgieron en Grecia y Roma.", R.drawable.historia_filosofia),
         EpocaFilosofica("me","Filosofía Medieval", "Basada en la fe y la razón durante la Edad Media.", R.drawable.filosofia_medieval),
         EpocaFilosofica("mo","Filosofía Moderna", "Surge en el Renacimiento con el pensamiento racionalista.", R.drawable.filosofiamoderna),
         EpocaFilosofica("si","Siglo XIX", "Caracterizada por corrientes como el idealismo y positivismo.", R.drawable.sigloxix),

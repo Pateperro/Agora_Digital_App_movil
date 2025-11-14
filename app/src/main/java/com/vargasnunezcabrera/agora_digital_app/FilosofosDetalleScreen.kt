@@ -1,6 +1,7 @@
 package com.vargasnunezcabrera.agora_digital_app
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,7 +9,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -52,21 +55,36 @@ fun FilosofosDetalleScreen(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
-            Image(
-                painter = painterResource(filosofo.image),
-                contentDescription = filosofo.nombre,
+
+            Card(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
-            )
+                    .border(1.dp, Color.Black, RoundedCornerShape(8.dp)),
+                shape = RoundedCornerShape(8.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Image(
+                        painter = painterResource(filosofo.image),
+                        contentDescription = filosofo.nombre,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Text(filosofo.nombre, style = MaterialTheme.typography.headlineMedium)
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text(filosofo.historia, style = MaterialTheme.typography.bodyLarge, color = Color(0xFF000000))
+                }
+            }
+
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(filosofo.nombre, style = MaterialTheme.typography.headlineMedium)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(filosofo.historia, style = MaterialTheme.typography.bodyLarge, color = Color(0xFF000000))
-
-            Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = onBack) {
                 Text("Volver")
             }
